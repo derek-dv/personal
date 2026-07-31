@@ -1,26 +1,55 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #fafafa; /* zinc-50 */
+    --foreground: #09090b; /* zinc-950 */
+    --accent: #2563eb; /* blue-600 */
+    --border: #e4e4e7; /* zinc-200 */
+    --card: #ffffff;
+    --card-foreground: #09090b;
+    --muted: #f4f4f5; /* zinc-100 */
+    --muted-foreground: #71717a; /* zinc-500 */
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #09090b; /* zinc-950 */
+      --foreground: #fafafa; /* zinc-50 */
+      --accent: #3b82f6; /* blue-500 */
+      --border: #27272a; /* zinc-800 */
+      --card: #18181b; /* zinc-900 */
+      --card-foreground: #fafafa;
+      --muted: #27272a; /* zinc-800 */
+      --muted-foreground: #a1a1aa; /* zinc-400 */
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  }
+  .animate-fade-up.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
