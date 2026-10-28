@@ -1,55 +1,367 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-sans: "Segoe UI", var(--font-inter), Tahoma, Geneva, Verdana, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), Consolas, "Courier New", monospace;
 }
 
 @layer base {
   :root {
-    --background: #fafafa; /* zinc-50 */
-    --foreground: #09090b; /* zinc-950 */
-    --accent: #2563eb; /* blue-600 */
-    --border: #e4e4e7; /* zinc-200 */
-    --card: #ffffff;
-    --card-foreground: #09090b;
-    --muted: #f4f4f5; /* zinc-100 */
-    --muted-foreground: #71717a; /* zinc-500 */
+    --background: #0b4a8c;
+    --foreground: #1e1e1e;
+    --accent: #37b6ff;
+    --border: #8fa6bf;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: #09090b; /* zinc-950 */
-      --foreground: #fafafa; /* zinc-50 */
-      --accent: #3b82f6; /* blue-500 */
-      --border: #27272a; /* zinc-800 */
-      --card: #18181b; /* zinc-900 */
-      --card-foreground: #fafafa;
-      --muted: #27272a; /* zinc-800 */
-      --muted-foreground: #a1a1aa; /* zinc-400 */
-    }
-  }
-}
-
-@layer base {
   * {
-    border-color: var(--border);
+    box-sizing: border-box;
   }
+
   body {
-    background-color: var(--background);
-    color: var(--foreground);
+    margin: 0;
+    padding: 0;
+    background-color: #093d77;
+    color: #1e1e1e;
     font-family: var(--font-sans);
+    overflow: hidden;
   }
 }
 
-@layer utilities {
-  .animate-fade-up {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-  }
-  .animate-fade-up.in-view {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ==========================================================================
+   Original Windows 7 "Harmony" Desktop & Logon Wallpapers + Aero Themes
+   ========================================================================== */
+.win7-harmony-wallpaper,
+.win7-theme-harmony {
+  background-color: #0d5aa7;
+  background-image: url("/wallpapers/win7-desktop.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.win7-logon-wallpaper,
+.win7-theme-logon {
+  background-color: #083c75;
+  background-image: url("/wallpapers/win7-logon.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.win7-theme-twilight {
+  background:
+    radial-gradient(circle at 75% 25%, rgba(92, 184, 255, 0.42), transparent 48%),
+    radial-gradient(circle at 22% 78%, rgba(45, 212, 191, 0.28), transparent 52%),
+    linear-gradient(145deg, #061833 0%, #0b2e59 48%, #0f4c81 100%);
+}
+
+.win7-theme-emerald {
+  background:
+    radial-gradient(circle at 70% 28%, rgba(74, 222, 128, 0.35), transparent 48%),
+    radial-gradient(circle at 25% 75%, rgba(56, 189, 248, 0.35), transparent 52%),
+    linear-gradient(145deg, #052e2b 0%, #0d5257 48%, #0e7490 100%);
+}
+
+.win7-wallpaper-rays {
+  background: transparent;
+}
+
+/* ==========================================================================
+   Windows 7 Aero Glass Window Frames (Active & Inactive)
+   ========================================================================== */
+.win7-aero-frame-active {
+  background:
+    linear-gradient(
+      165deg,
+      rgba(218, 238, 255, 0.72) 0%,
+      rgba(122, 179, 232, 0.58) 18%,
+      rgba(74, 138, 204, 0.52) 52%,
+      rgba(148, 200, 248, 0.65) 100%
+    );
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  box-shadow:
+    0 0 0 1px rgba(16, 42, 71, 0.78),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 18px 44px rgba(0, 0, 0, 0.58),
+    0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.win7-aero-frame-inactive {
+  background:
+    linear-gradient(
+      165deg,
+      rgba(215, 228, 242, 0.55) 0%,
+      rgba(155, 178, 202, 0.44) 50%,
+      rgba(182, 202, 222, 0.52) 100%
+    );
+  backdrop-filter: blur(10px) saturate(115%);
+  -webkit-backdrop-filter: blur(10px) saturate(115%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow:
+    0 0 0 1px rgba(34, 52, 72, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 10px 26px rgba(0, 0, 0, 0.35);
+}
+
+.win7-title-text {
+  color: #08182b;
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.98),
+    0 0 12px rgba(255, 255, 255, 0.9),
+    0 1px 2px rgba(255, 255, 255, 0.95);
+}
+
+/* ==========================================================================
+   Windows 7 Top-Right Window Caption Buttons (Min / Max / Red Close)
+   ========================================================================== */
+.win7-caption-btn {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.15) 48%,
+    rgba(30, 62, 98, 0.32) 52%,
+    rgba(62, 112, 168, 0.45) 100%
+  );
+  border-bottom: 1px solid rgba(24, 52, 84, 0.78);
+  border-left: 1px solid rgba(24, 52, 84, 0.65);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  transition: all 0.12s ease;
+}
+
+.win7-caption-btn-left {
+  border-bottom-left-radius: 5px;
+}
+
+.win7-caption-btn-mid {
+  border-left: 1px solid rgba(24, 52, 84, 0.65);
+}
+
+.win7-caption-btn-left:hover,
+.win7-caption-btn-mid:hover {
+  background: radial-gradient(
+      circle at 50% 80%,
+      rgba(124, 218, 255, 0.85),
+      transparent 75%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(220, 244, 255, 0.82) 0%,
+      rgba(105, 184, 240, 0.72) 50%,
+      rgba(32, 114, 188, 0.85) 52%,
+      rgba(86, 185, 252, 0.9) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 0 8px rgba(95, 204, 255, 0.85);
+}
+
+.win7-caption-btn-close {
+  border-right: 1px solid rgba(24, 52, 84, 0.78);
+  border-bottom-right-radius: 5px;
+  background: linear-gradient(
+    180deg,
+    rgba(244, 166, 158, 0.85) 0%,
+    rgba(218, 88, 74, 0.82) 48%,
+    rgba(172, 28, 16, 0.92) 52%,
+    rgba(218, 72, 54, 0.92) 100%
+  );
+}
+
+.win7-caption-btn-close:hover {
+  background: radial-gradient(
+      circle at 50% 80%,
+      rgba(255, 188, 148, 0.95),
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      #ffafa6 0%,
+      #ee5342 48%,
+      #c21909 52%,
+      #f24a36 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 0 12px rgba(255, 78, 56, 0.95);
+}
+
+/* ==========================================================================
+   Explorer Navigation Orbs, Command Buttons, List Selection & Desktop Icons
+   ========================================================================== */
+.win7-nav-orb {
+  background: linear-gradient(
+    180deg,
+    #88c9f9 0%,
+    #368de0 48%,
+    #1866be 52%,
+    #409df0 100%
+  );
+  border: 1px solid #164f91;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.win7-nav-orb:hover:not(:disabled) {
+  filter: brightness(1.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 0 6px rgba(72, 178, 255, 0.8);
+}
+
+.win7-cmd-btn {
+  border: 1px solid transparent;
+  transition: all 0.12s ease;
+}
+
+.win7-cmd-btn:hover {
+  background: linear-gradient(180deg, #fafdff 0%, #ddf0ff 100%);
+  border-color: #84b4e2;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.win7-btn {
+  background: linear-gradient(
+    180deg,
+    #f9fcff 0%,
+    #e8f2fc 48%,
+    #d4e6f8 52%,
+    #c6ddf4 100%
+  );
+  border: 1px solid #7da2ce;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: all 0.12s ease;
+}
+
+.win7-btn:hover {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #eaf6ff 48%,
+    #d2ebff 52%,
+    #bce0ff 100%
+  );
+  border-color: #3c7fb1;
+  box-shadow:
+    inset 0 1px 0 #ffffff,
+    0 0 4px rgba(60, 127, 177, 0.35);
+}
+
+.win7-list-hover:hover {
+  background: linear-gradient(180deg, #f4fafe 0%, #e4f2fd 100%);
+  box-shadow: inset 0 0 0 1px #b8d6fb;
+}
+
+.win7-list-selected {
+  background: linear-gradient(180deg, #dcebfc 0%, #c1dcfc 100%);
+  box-shadow: inset 0 0 0 1px #7da2ce;
+}
+
+.win7-desktop-icon {
+  border: 1px solid transparent;
+}
+
+.win7-desktop-icon:hover {
+  background: rgba(196, 229, 255, 0.22);
+  border: 1px solid rgba(196, 229, 255, 0.52);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32);
+}
+
+.win7-desktop-icon-selected {
+  background: rgba(135, 200, 255, 0.38);
+  border: 1px solid rgba(185, 228, 255, 0.85);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.win7-desktop-label {
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.95),
+    0 0 4px rgba(0, 0, 0, 0.85);
+}
+
+/* ==========================================================================
+   Windows 7 Start Menu & Superbar Taskbar
+   ========================================================================== */
+.win7-start-menu {
+  background: linear-gradient(
+    165deg,
+    rgba(42, 74, 110, 0.9) 0%,
+    rgba(22, 44, 70, 0.92) 55%,
+    rgba(14, 30, 50, 0.95) 100%
+  );
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 0 0 1px rgba(8, 20, 36, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    0 14px 38px rgba(0, 0, 0, 0.7);
+}
+
+.win7-taskbar {
+  background: linear-gradient(
+    180deg,
+    rgba(50, 88, 128, 0.72) 0%,
+    rgba(20, 44, 72, 0.84) 45%,
+    rgba(10, 24, 42, 0.9) 100%
+  );
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow:
+    0 -1px 0 rgba(10, 24, 42, 0.85),
+    0 -4px 16px rgba(0, 0, 0, 0.45);
+}
+
+.win7-superbar-item-pinned {
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.win7-superbar-item-pinned:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.win7-superbar-item-running {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(148, 198, 242, 0.14) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.win7-superbar-item-running:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.34) 0%,
+    rgba(155, 212, 255, 0.26) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.win7-superbar-item-active {
+  background: radial-gradient(
+      circle at 50% 95%,
+      rgba(118, 214, 255, 0.55),
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.42) 0%,
+      rgba(158, 212, 255, 0.28) 50%,
+      rgba(95, 174, 242, 0.36) 100%
+    );
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    0 0 10px rgba(95, 196, 255, 0.45);
 }
